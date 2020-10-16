@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('config');
+const { tokenSecret } = require('../config/url');
 
 const authenticateToken = (req, res, next) => {
   const token = req.header('x-auth-token');
@@ -9,7 +9,7 @@ const authenticateToken = (req, res, next) => {
   }
 
   try {
-    jwt.verify(token, config.get('TOKEN_SECRET'), (err, decoded) => {
+    jwt.verify(token, tokenSecret, (err, decoded) => {
       if(err) {
         res.status(401).json({ msg: 'Token authenticate is denied'})
       } else {
