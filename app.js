@@ -22,6 +22,8 @@ app.use('/api/progress', progressRoutes);
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   app.use(express.static('client/public'));
+  app.use(express.static('client/src/assets/icons'));
+  app.use(express.static('client/src/assets/images'));
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
